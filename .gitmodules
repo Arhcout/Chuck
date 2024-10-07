@@ -1,0 +1,3 @@
+[submodule "ext/CBase"]
+	path = ext/CBase
+	url = https://github.com/Arhcout/CBase.git

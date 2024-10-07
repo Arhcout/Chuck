@@ -1,0 +1,117 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-o",
+      "src/Error.c.o",
+      "src/Error.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
+    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Error.c",
+    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Error.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-o",
+      "src/Vec.c.o",
+      "src/Vec.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
+    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Vec.c",
+    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Vec.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-o",
+      "src/Stream.c.o",
+      "src/Stream.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
+    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Stream.c",
+    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Stream.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-o",
+      "src/Queue.c.o",
+      "src/Queue.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
+    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Queue.c",
+    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Queue.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-o",
+      "src/Array.c.o",
+      "src/Array.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
+    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Array.c",
+    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Array.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/CBase/src",
+      "-o",
+      "Input.c.o",
+      "Input.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/Input.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/Input.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/CBase/src",
+      "-o",
+      "UUID.c.o",
+      "UUID.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/UUID.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/UUID.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/CBase/src",
+      "-o",
+      "main.c.o",
+      "main.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/main.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/main.c.o"
+  }
+]

@@ -1,0 +1,14 @@
+CC=gcc
+AR=ar
+
+# Set PREFIX for local path dependant vars (the / is inportant)
+PREFIX=./
+
+GAME=$(PREFIX)Chuck
+GAME_LIB=$(PREFIX)libchuck.a
+
+GAME_DIR=$(PREFIX)game
+TEST_DIR=$(PREFIX)test
+EXT_DIR=$(PREFIX)ext
+BASE_LDFLAGS=-g -L$(PREFIX)ext -lcbase
+BASE_CFLAGS=-g -Wall
