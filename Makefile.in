@@ -11,4 +11,4 @@ GAME_DIR=$(PREFIX)game
 TEST_DIR=$(PREFIX)test
 EXT_DIR=$(PREFIX)ext
 BASE_LDFLAGS=-g -L$(PREFIX)ext -lcbase
-BASE_CFLAGS=-g -Wall
+BASE_CFLAGS=-g -Wall -I$(PREFIX)ext/CBase/src -I$(PREFIX)ext/c-hashmap

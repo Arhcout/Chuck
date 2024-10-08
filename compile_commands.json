@@ -75,7 +75,24 @@
       "-c",
       "-g",
       "-Wall",
+      "-I../../ext/CBase/src",
+      "-I../../ext/c-hashmap",
+      "-o",
+      "map.c.o",
+      "map.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/ext/c-hashmap",
+    "file": "/home/me/Proj/TheChuckMaurice/ext/c-hashmap/map.c",
+    "output": "/home/me/Proj/TheChuckMaurice/ext/c-hashmap/map.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
       "-I../ext/CBase/src",
+      "-I../ext/c-hashmap",
       "-o",
       "Input.c.o",
       "Input.c"
@@ -91,6 +108,23 @@
       "-g",
       "-Wall",
       "-I../ext/CBase/src",
+      "-I../ext/c-hashmap",
+      "-o",
+      "ECS.c.o",
+      "ECS.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/ECS.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/ECS.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/CBase/src",
+      "-I../ext/c-hashmap",
       "-o",
       "UUID.c.o",
       "UUID.c"
@@ -106,6 +140,23 @@
       "-g",
       "-Wall",
       "-I../ext/CBase/src",
+      "-I../ext/c-hashmap",
+      "-o",
+      "TransformCmp.c.o",
+      "TransformCmp.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/TransformCmp.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/TransformCmp.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/CBase/src",
+      "-I../ext/c-hashmap",
       "-o",
       "main.c.o",
       "main.c"

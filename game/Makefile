@@ -5,13 +5,13 @@ SRC=$(shell find . -name "*.c" -not -name "main.c")
 OBJ=$(SRC:%=%.o)
 ENTRY=main.c.o
 
-LIBS=-lcbase $(shell, sdl2-config --libs)
+LIBS=-lhashmap -lcbase $(shell, sdl2-config --libs)
 LDFLAGS=$(BASE_LDFLAGS)
-CFLAGS=$(BASE_CFLAGS) -I$(PREFIX)ext/CBase/src $(shell, sdl2-config --cflags)
+CFLAGS=$(BASE_CFLAGS) $(shell, sdl2-config --cflags)
 
 .DEFAULT: $(GAME)
 
-$(GAME): $(GAME_LIB) $(ENTRY)
+$(GAME): $(ENTRY) $(GAME_LIB)
 	$(CC) $(LDFLAGS) $^ -o $@ $(LIBS)
 
 $(GAME_LIB): $(OBJ)

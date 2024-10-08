@@ -1,11 +1,16 @@
 CBASE_DIR=CBase
+HASHMAP_DIR=c-hashmap
 
-.PHONY: all cbase clean
+.PHONY: all hashmap cbase clean
 
-all: cbase
+all: cbase hashmap
+
+hashmap:
+	$(MAKE) -C $(HASHMAP_DIR) lib
 
 cbase:
 	$(MAKE) -C $(CBASE_DIR) lib
 
 clean:
 	$(MAKE) -C $(CBASE_DIR) clean
+	$(MAKE) -C $(HASHMAP_DIR) clean

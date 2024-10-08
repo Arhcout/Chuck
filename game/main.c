@@ -1,6 +1,11 @@
-#include <stdio.h>
+#include "ECS.h"
+#include <Error.h>
 
 int main() {
-  printf("Hello world");
+  InitComponents();
+  if (GetError() == ERROR_LV) {
+    return 1;
+  }
+  UpdateSystems();
   return 0;
 }
