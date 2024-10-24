@@ -14,4 +14,4 @@ do
   let "test_passed=test_passed+1"
 done
 
-echo "[$#/$test_passed] Passed"
+echo "[$test_passed/$#] Passed"

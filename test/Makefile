@@ -5,18 +5,21 @@ SRC=$(shell find . -name "*.c")
 TESTS=$(SRC:%=%.test)
 TESTING_SCRIPT=./test.sh
 
-LIBS=-lcbase -lhashmap $(shell, sdl2-config --libs) $(PREFIX)libchuck.a
+LIBS=-Wl,-rpath,$(CURDIR)/$(PREFIX)ext/lib -Wl,--enable-new-dtags -lSDL3 -lSDL3_image -lm $(PREFIX)libchuck.a -lhashmap -lcbase
+CFLAGS=$(BASE_CFLAGS) -I$(PREFIX)game
 LDFLAGS=$(BASE_LDFLAGS)
-CFLAGS=$(BASE_CFLAGS) -I$(PREFIX)game -I$(PREFIX)ext/CBase/src $(shell, sdl2-config --cflags)
 
-.DEFAULT: tests
+.PHONY: run_tests tests clean
+
+.DEFAULT: run_tests
+run_tests: $(TESTS)
+	$(TESTING_SCRIPT) $^
 
 tests: $(TESTS)
-	$(TESTING_SCRIPT) $^
 
 %.c.test: %.c
 	@echo "== BUILDING TEST $@ =="
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ $(LIBS)
+	$(CC) $^ $(CFLAGS) $(LDFLAGS) $(LIBS) -o $@
 
 clean:
 	rm -f $(TESTS)

@@ -1,9 +1,12 @@
 include Makefile.in
 
-.PHONY: game ext tests clean
+.PHONY: game meta ext tests clean full_clean
 
 game: ext
 	$(MAKE) -C $(GAME_DIR)
+
+meta:
+	$(MAKE) -C $(META_DIR) meta
 
 ext:
 	$(MAKE) -C $(EXT_DIR)
@@ -13,5 +16,7 @@ tests: game
 
 clean:
 	$(MAKE) -C $(GAME_DIR) clean
-	$(MAKE) -C $(EXT_DIR) clean
 	$(MAKE) -C $(TEST_DIR) clean
+
+full_clean: clean
+	$(MAKE) -C $(EXT_DIR) clean

@@ -5,13 +5,14 @@
       "-c",
       "-g",
       "-Wall",
+      "-I../ext/include",
       "-o",
-      "src/Error.c.o",
-      "src/Error.c"
+      "main.c.o",
+      "main.c"
     ],
-    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
-    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Error.c",
-    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Error.c.o"
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/main.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/main.c.o"
   },
   {
     "arguments": [
@@ -19,80 +20,7 @@
       "-c",
       "-g",
       "-Wall",
-      "-o",
-      "src/Vec.c.o",
-      "src/Vec.c"
-    ],
-    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
-    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Vec.c",
-    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Vec.c.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-g",
-      "-Wall",
-      "-o",
-      "src/Stream.c.o",
-      "src/Stream.c"
-    ],
-    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
-    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Stream.c",
-    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Stream.c.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-g",
-      "-Wall",
-      "-o",
-      "src/Queue.c.o",
-      "src/Queue.c"
-    ],
-    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
-    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Queue.c",
-    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Queue.c.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-g",
-      "-Wall",
-      "-o",
-      "src/Array.c.o",
-      "src/Array.c"
-    ],
-    "directory": "/home/me/Proj/TheChuckMaurice/ext/CBase",
-    "file": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Array.c",
-    "output": "/home/me/Proj/TheChuckMaurice/ext/CBase/src/Array.c.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-g",
-      "-Wall",
-      "-I../../ext/CBase/src",
-      "-I../../ext/c-hashmap",
-      "-o",
-      "map.c.o",
-      "map.c"
-    ],
-    "directory": "/home/me/Proj/TheChuckMaurice/ext/c-hashmap",
-    "file": "/home/me/Proj/TheChuckMaurice/ext/c-hashmap/map.c",
-    "output": "/home/me/Proj/TheChuckMaurice/ext/c-hashmap/map.c.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-g",
-      "-Wall",
-      "-I../ext/CBase/src",
-      "-I../ext/c-hashmap",
+      "-I../ext/include",
       "-o",
       "Input.c.o",
       "Input.c"
@@ -107,8 +35,52 @@
       "-c",
       "-g",
       "-Wall",
-      "-I../ext/CBase/src",
-      "-I../ext/c-hashmap",
+      "-I../ext/include",
+      "-o",
+      "Files.c.o",
+      "Files.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/Files.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/Files.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-o",
+      "Atlas.c.o",
+      "Atlas.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/Atlas.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/Atlas.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-o",
+      "Sprite.c.o",
+      "Sprite.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/Sprite.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/Sprite.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
       "-o",
       "ECS.c.o",
       "ECS.c"
@@ -123,8 +95,7 @@
       "-c",
       "-g",
       "-Wall",
-      "-I../ext/CBase/src",
-      "-I../ext/c-hashmap",
+      "-I../ext/include",
       "-o",
       "UUID.c.o",
       "UUID.c"
@@ -139,8 +110,7 @@
       "-c",
       "-g",
       "-Wall",
-      "-I../ext/CBase/src",
-      "-I../ext/c-hashmap",
+      "-I../ext/include",
       "-o",
       "TransformCmp.c.o",
       "TransformCmp.c"
@@ -155,14 +125,97 @@
       "-c",
       "-g",
       "-Wall",
-      "-I../ext/CBase/src",
-      "-I../ext/c-hashmap",
+      "-I../ext/include",
       "-o",
-      "main.c.o",
-      "main.c"
+      "Renderer.c.o",
+      "Renderer.c"
     ],
     "directory": "/home/me/Proj/TheChuckMaurice/game",
-    "file": "/home/me/Proj/TheChuckMaurice/game/main.c",
-    "output": "/home/me/Proj/TheChuckMaurice/game/main.c.o"
+    "file": "/home/me/Proj/TheChuckMaurice/game/Renderer.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/Renderer.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-o",
+      "SubTexture.c.o",
+      "SubTexture.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/SubTexture.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/SubTexture.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-o",
+      "Utils.c.o",
+      "Utils.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/Utils.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/Utils.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-I../game",
+      "-g",
+      "../libchuck.a",
+      "-o",
+      "Atlas.c.test",
+      "Atlas.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/test",
+    "file": "/home/me/Proj/TheChuckMaurice/test/Atlas.c",
+    "output": "/home/me/Proj/TheChuckMaurice/test/Atlas.c.test"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-I../game",
+      "-g",
+      "../libchuck.a",
+      "-o",
+      "ECS.c.test",
+      "ECS.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/test",
+    "file": "/home/me/Proj/TheChuckMaurice/test/ECS.c",
+    "output": "/home/me/Proj/TheChuckMaurice/test/ECS.c.test"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-I../game",
+      "-g",
+      "../libchuck.a",
+      "-o",
+      "UUID.c.test",
+      "UUID.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/test",
+    "file": "/home/me/Proj/TheChuckMaurice/test/UUID.c",
+    "output": "/home/me/Proj/TheChuckMaurice/test/UUID.c.test"
   }
 ]

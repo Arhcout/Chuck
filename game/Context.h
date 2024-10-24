@@ -1,5 +1,7 @@
 #pragma once
 
+#define MAX_FILENAME 1024
+
 // Check OS
 #if defined(_WIN32)
 #define CH_WINDOWS 1

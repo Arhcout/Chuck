@@ -4,15 +4,18 @@ PREFIX=../../
 SRC=$(shell find . -name "*.c")
 OBJ=$(SRC:%=%.o)
 
+HDRS=$(shell find . -name "*.h")
+
 CFLAGS=$(BASE_CFLAGS)
 
-LIB=$(PREFIX)ext/libhashmap.a
+LIB=$(PREFIX)ext/lib/libhashmap.a
 
 .DEFAULT: lib
 
 .PHONY: lib clean
 
 lib: $(LIB)
+	cp $(HDRS) $(PREFIX)ext/include
 
 $(LIB): $(OBJ)
 	$(AR) r $@ $^

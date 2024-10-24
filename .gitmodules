@@ -1,3 +1,6 @@
 [submodule "ext/CBase"]
 	path = ext/CBase
 	url = https://github.com/Arhcout/CBase.git
+[submodule "ext/sdl-gpu"]
+	path = ext/sdl-gpu
+	url = https://github.com/grimfang4/sdl-gpu.git

@@ -8,7 +8,8 @@ GAME=$(PREFIX)Chuck
 GAME_LIB=$(PREFIX)libchuck.a
 
 GAME_DIR=$(PREFIX)game
+META_DIR=$(PREFIX)meta
 TEST_DIR=$(PREFIX)test
 EXT_DIR=$(PREFIX)ext
-BASE_LDFLAGS=-g -L$(PREFIX)ext -lcbase
-BASE_CFLAGS=-g -Wall -I$(PREFIX)ext/CBase/src -I$(PREFIX)ext/c-hashmap
+BASE_LDFLAGS=-g -L$(PREFIX)ext/lib
+BASE_CFLAGS=-g -Wall -I$(PREFIX)ext/include

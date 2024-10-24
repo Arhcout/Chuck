@@ -5,9 +5,9 @@ SRC=$(shell find . -name "*.c" -not -name "main.c")
 OBJ=$(SRC:%=%.o)
 ENTRY=main.c.o
 
-LIBS=-lhashmap -lcbase $(shell, sdl2-config --libs)
+LIBS=-Wl,-rpath,$(PREFIX)ext/lib -Wl,--enable-new-dtags -lSDL3 -lSDL3_image -lm -lhashmap -lcbase 
 LDFLAGS=$(BASE_LDFLAGS)
-CFLAGS=$(BASE_CFLAGS) $(shell, sdl2-config --cflags)
+CFLAGS=$(BASE_CFLAGS)
 
 .DEFAULT: $(GAME)
 
