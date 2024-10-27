@@ -2,13 +2,14 @@
 #include "Context.h"
 #include "Error.h"
 #include <SDL3/SDL.h>
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 // 4 days
 
 char *GetOSPath(const char *epath) {
   const char *base = SDL_GetBasePath();
-  ASSERT(base, "Can't read base path: %s\n", SDL_GetError());
+  assert(base);
 
   size_t baseSize = strlen(base);
 
@@ -32,8 +33,8 @@ char *GetOSPath(const char *epath) {
 }
 
 char *ReadFile(const char *epath, size_t *size) {
-  ASSERT(epath, "epath is NULL?!!!\n");
-  ASSERT(size, "size is NULL?!!!\n");
+  assert(epath);
+  assert(size);
 
   char *path = GetOSPath(epath);
   if (GetError() == ERROR_LV) {

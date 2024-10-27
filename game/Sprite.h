@@ -10,7 +10,7 @@ typedef struct Sprite_s {
 } Sprite;
 
 typedef struct SpriteCreateInfo_s {
-  uint64_t spriteId;
+  const char *textureName;
   Vecf2 offset;
   Vecf2 scale;
   float rotation;

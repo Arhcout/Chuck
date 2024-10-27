@@ -3,6 +3,7 @@
 #include <Renderer.h>
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
+#include <SubTexture.h>
 
 int main() {
   if (!SDL_Init(SDL_INIT_VIDEO)) {
@@ -19,16 +20,23 @@ int main() {
     return 4;
   }
 
-  Atlas *atlas = ReadAtlas("atlas/test");
-  if (GetError() != LOG_LV) {
+  InitAtlas();
+  InitSubTextures();
+
+  ReadAtlas("atlas/test");
+  if (GetError() != 0) {
     return 2;
   }
 
-  DestroyAtlas(atlas);
-  atlas = NULL;
+  if (!GetSubtexture(hashmap_str_lit("dog"))) {
+    return 5;
+  }
+
+  UninitSubTextures();
+  UninitAtlas();
   UninitRenderer();
 
-  SDL_Quit();
   IMG_Quit();
+  SDL_Quit();
   return 0;
 }

@@ -1,6 +1,7 @@
 *.o
 *.a
 *.idx
+*.c.test
 vgcore.*
 Session.vim
 Chuck

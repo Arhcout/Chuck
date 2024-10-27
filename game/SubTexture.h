@@ -6,4 +6,7 @@ typedef struct SubTexture_s {
   SDL_Rect src;
 } SubTexture;
 
-SubTexture *CreateSubTexture(SDL_Texture *atlas, SDL_Rect src);
+void InitSubTextures();
+void UninitSubTextures();
+void RegisterSubtexture(SubTexture *sub, const char *key, size_t keySize);
+const SubTexture *GetSubtexture(const char *key, size_t keySize);
