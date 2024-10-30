@@ -20,7 +20,7 @@ void InitTransformComponents() {
 Transform *AddTransformComponent(Entity *entity) {
   Transform *new = malloc(sizeof(Transform));
   MALLOC_CHECK(new, NULL);
-  hashmap_set(components, entity, sizeof(Entity), (uintptr_t) new);
+  hashmap_set(components, entity, sizeof(Entity), (uintptr_t)new);
   return new;
 }
 
@@ -44,10 +44,24 @@ void RemoveTransformComponent(Entity *entity) {
   }
 }
 
+bool HasTransformComponent(Entity *entity) {
+  uintptr_t out;
+  return hashmap_get(components, entity, sizeof(Entity), &out);
+}
+
+Transform *GetTransformComponent(Entity *entity) {
+  uintptr_t out;
+  hashmap_get(components, entity, sizeof(Entity), &out);
+  return (void *)out;
+}
+
 static int UpdateTransform(const void *key, size_t keysize, uintptr_t component,
                            void *usr) {
   const Entity *entity = key;
   Transform *cmp = (Transform *)component;
+  if (!cmp->enabled) {
+    return 0;
+  }
   LOG("Transform:\n\
 \tentity %lx\n\
 \tpos: %f, %f\n\

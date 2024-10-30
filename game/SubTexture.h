@@ -3,7 +3,7 @@
 
 typedef struct SubTexture_s {
   SDL_Texture *atlas;
-  SDL_Rect src;
+  SDL_FRect src;
 } SubTexture;
 
 void InitSubTextures();

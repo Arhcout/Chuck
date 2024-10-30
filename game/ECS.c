@@ -11,12 +11,23 @@ Entity *CreateEntity() {
   return e;
 }
 
+#define GarantiRemoveCmp(type, entity)                                         \
+  if (Has##type##Component((entity))) {                                        \
+    Remove##type##Component(entity);                                           \
+  }
 void DestroyEntity(Entity *entity) {
-  // TODO: remove from all components
+  GarantiRemoveCmp(Transform, entity);
+  GarantiRemoveCmp(Sprite, entity);
   free(entity);
 }
+#undef GarantiRemoveCmp
 
-#define InitCmp(type) Init##type##Components()
-void InitComponents() { InitCmp(Transform); }
+void InitComponents() {
+  InitTransformComponents();
+  InitSpriteComponents();
+}
 
-void UpdateSystems() { UpdateTransformSystem(); }
+void UpdateSystems() {
+  UpdateTransformSystem();
+  UpdateSpriteSystem();
+}
