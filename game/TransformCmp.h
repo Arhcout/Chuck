@@ -16,4 +16,5 @@ bool HasTransformComponent(Entity *entity);
 Transform *GetTransformComponent(Entity *entity);
 
 void InitTransformComponents();
+void UninitTransformComponents();
 void UpdateTransformSystem();

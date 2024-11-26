@@ -17,4 +17,5 @@ bool HasSpriteComponent(Entity *entity);
 Sprite *GetSpriteComponent(Entity *entity);
 
 void InitSpriteComponents();
+void UninitSpriteComponents();
 void UpdateSpriteSystem();

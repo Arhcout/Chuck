@@ -6,10 +6,13 @@ PREFIX=./
 
 GAME=$(PREFIX)Chuck
 GAME_LIB=$(PREFIX)libchuck.a
+LCM_LIB=$(PREFIX)ext/lib/libluacm.so
 
+LCM_DIR=$(PREFIX)game/LCM
 GAME_DIR=$(PREFIX)game
 META_DIR=$(PREFIX)meta
 TEST_DIR=$(PREFIX)test
 EXT_DIR=$(PREFIX)ext
 BASE_LDFLAGS=-g -L$(PREFIX)ext/lib
-BASE_CFLAGS=-g -Wall -I$(PREFIX)ext/include
+BASE_CFLAGS=-g -Wall -I$(PREFIX)ext/include -DDEBUG
+BASE_LIBS=-Wl,-rpath,$(CURDIR)/$(PREFIX)ext/lib -Wl,--enable-new-dtags -llua -lluacm -lSDL3 -lSDL3_image -lSDL3_mixer -lm -lhashmap -lcbase 

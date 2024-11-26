@@ -20,6 +20,11 @@ void InitSpriteComponents() {
   }
 }
 
+void UninitSpriteComponents() {
+  assert(components);
+  hashmap_free(components);
+}
+
 Sprite *AddSpriteComponent(Entity *entity) {
   Sprite *new = malloc(sizeof(Sprite));
   MALLOC_CHECK(new, NULL);

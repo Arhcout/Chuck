@@ -17,6 +17,11 @@ void InitTransformComponents() {
   }
 }
 
+void UninitTransformComponents() {
+  assert(components);
+  hashmap_free(components);
+}
+
 Transform *AddTransformComponent(Entity *entity) {
   Transform *new = malloc(sizeof(Transform));
   MALLOC_CHECK(new, NULL);

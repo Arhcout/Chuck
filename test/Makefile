@@ -5,7 +5,7 @@ SRC=$(shell find . -name "*.c")
 TESTS=$(SRC:%=%.test)
 TESTING_SCRIPT=./test.sh
 
-LIBS=-Wl,-rpath,$(CURDIR)/$(PREFIX)ext/lib -Wl,--enable-new-dtags -lSDL3 -lSDL3_image -lm $(PREFIX)libchuck.a -lhashmap -lcbase
+LIBS=-Wl,-rpath,$(CURDIR)/$(PREFIX)ext/lib -Wl,--enable-new-dtags -llua -lSDL3  -lSDL3_mixer -lSDL3_image -lm $(PREFIX)libchuck.a -lhashmap -lcbase
 CFLAGS=$(BASE_CFLAGS) -I$(PREFIX)game
 LDFLAGS=$(BASE_LDFLAGS)
 

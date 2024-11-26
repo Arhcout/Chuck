@@ -6,6 +6,7 @@
       "-g",
       "-Wall",
       "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "main.c.o",
       "main.c"
@@ -21,6 +22,7 @@
       "-g",
       "-Wall",
       "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "Input.c.o",
       "Input.c"
@@ -36,6 +38,39 @@
       "-g",
       "-Wall",
       "-I../ext/include",
+      "-DDEBUG",
+      "-o",
+      "VM.c.o",
+      "VM.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/VM.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/VM.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-DDEBUG",
+      "-o",
+      "SpriteCmp.c.o",
+      "SpriteCmp.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/SpriteCmp.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/SpriteCmp.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "Files.c.o",
       "Files.c"
@@ -51,6 +86,7 @@
       "-g",
       "-Wall",
       "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "Atlas.c.o",
       "Atlas.c"
@@ -66,21 +102,7 @@
       "-g",
       "-Wall",
       "-I../ext/include",
-      "-o",
-      "Sprite.c.o",
-      "Sprite.c"
-    ],
-    "directory": "/home/me/Proj/TheChuckMaurice/game",
-    "file": "/home/me/Proj/TheChuckMaurice/game/Sprite.c",
-    "output": "/home/me/Proj/TheChuckMaurice/game/Sprite.c.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-g",
-      "-Wall",
-      "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "ECS.c.o",
       "ECS.c"
@@ -96,6 +118,7 @@
       "-g",
       "-Wall",
       "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "UUID.c.o",
       "UUID.c"
@@ -111,6 +134,23 @@
       "-g",
       "-Wall",
       "-I../ext/include",
+      "-DDEBUG",
+      "-o",
+      "ScriptCmp.c.o",
+      "ScriptCmp.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/ScriptCmp.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/ScriptCmp.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "TransformCmp.c.o",
       "TransformCmp.c"
@@ -126,6 +166,23 @@
       "-g",
       "-Wall",
       "-I../ext/include",
+      "-DDEBUG",
+      "-o",
+      "Time.c.o",
+      "Time.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/Time.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/Time.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "Renderer.c.o",
       "Renderer.c"
@@ -141,6 +198,23 @@
       "-g",
       "-Wall",
       "-I../ext/include",
+      "-DDEBUG",
+      "-o",
+      "Queue.c.o",
+      "Queue.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/Queue.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/Queue.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "SubTexture.c.o",
       "SubTexture.c"
@@ -156,6 +230,23 @@
       "-g",
       "-Wall",
       "-I../ext/include",
+      "-DDEBUG",
+      "-o",
+      "Audio.c.o",
+      "Audio.c"
+    ],
+    "directory": "/home/me/Proj/TheChuckMaurice/game",
+    "file": "/home/me/Proj/TheChuckMaurice/game/Audio.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/Audio.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-g",
+      "-Wall",
+      "-I../ext/include",
+      "-DDEBUG",
       "-o",
       "Utils.c.o",
       "Utils.c"
@@ -170,52 +261,16 @@
       "-c",
       "-g",
       "-Wall",
-      "-I../ext/include",
-      "-I../game",
-      "-g",
-      "../libchuck.a",
+      "-I../../ext/include",
+      "-DDEBUG",
+      "-I../../game",
+      "-fPIC",
       "-o",
-      "Atlas.c.test",
-      "Atlas.c"
+      "LuaCM.c.o",
+      "LuaCM.c"
     ],
-    "directory": "/home/me/Proj/TheChuckMaurice/test",
-    "file": "/home/me/Proj/TheChuckMaurice/test/Atlas.c",
-    "output": "/home/me/Proj/TheChuckMaurice/test/Atlas.c.test"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-g",
-      "-Wall",
-      "-I../ext/include",
-      "-I../game",
-      "-g",
-      "../libchuck.a",
-      "-o",
-      "ECS.c.test",
-      "ECS.c"
-    ],
-    "directory": "/home/me/Proj/TheChuckMaurice/test",
-    "file": "/home/me/Proj/TheChuckMaurice/test/ECS.c",
-    "output": "/home/me/Proj/TheChuckMaurice/test/ECS.c.test"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-c",
-      "-g",
-      "-Wall",
-      "-I../ext/include",
-      "-I../game",
-      "-g",
-      "../libchuck.a",
-      "-o",
-      "UUID.c.test",
-      "UUID.c"
-    ],
-    "directory": "/home/me/Proj/TheChuckMaurice/test",
-    "file": "/home/me/Proj/TheChuckMaurice/test/UUID.c",
-    "output": "/home/me/Proj/TheChuckMaurice/test/UUID.c.test"
+    "directory": "/home/me/Proj/TheChuckMaurice/game/LCM",
+    "file": "/home/me/Proj/TheChuckMaurice/game/LCM/LuaCM.c",
+    "output": "/home/me/Proj/TheChuckMaurice/game/LCM/LuaCM.c.o"
   }
 ]

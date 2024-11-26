@@ -10,3 +10,9 @@
 #else
 #error Operating system not supported sry
 #endif
+
+#if defined(CH_LINUX)
+#define CH_DIR_SEP '/'
+#elif defined(CH_WINDOWS)
+#define CH_DIR_SEP '\\'
+#endif
