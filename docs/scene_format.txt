@@ -1,0 +1,24 @@
+-json
+
+version, // scene formats version
+lastedited,
+atlases [
+ "...",
+],
+[
+  { // entity
+    { // component
+      type
+      ... // data
+    },
+    { // component
+      type
+      ... // data
+    }
+  },
+  {
+    ...
+  },
+  ...
+]
+

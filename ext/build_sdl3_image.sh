@@ -29,7 +29,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-git clone https://github.com/libsdl-org/SDL_image.git
+git clone --depth 1 https://github.com/libsdl-org/SDL_image.git
 pushd SDL_image
 
 mkdir build
