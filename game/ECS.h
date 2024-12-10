@@ -1,4 +1,5 @@
 #pragma once
+#include <cjson/cJSON.h>
 #include <stdbool.h>
 #include <stdint.h>
 typedef uint64_t Entity;
@@ -13,6 +14,33 @@ typedef uint64_t Entity;
 #define TRANSFORM_CMP 0
 #define SPRITE_CMP 1
 #define SCRIPT_CMP 2
+
+// if no return value use 'void' for res
+#define CmpFnOnTypeWithRes(fn, type, res, ...)                                 \
+  switch ((type)) {                                                            \
+  case TRANSFORM_CMP:                                                          \
+    (res) = fn##TransformComponent(__VA_ARGS__);                               \
+    break;                                                                     \
+  case SPRITE_CMP:                                                             \
+    (res) = fn##SpriteComponent(__VA_ARGS__);                                  \
+    break;                                                                     \
+  case SCRIPT_CMP:                                                             \
+    (res) = fn##ScriptComponent(__VA_ARGS__);                                  \
+    break;                                                                     \
+  }
+
+#define CmpFnOnType(fn, type, ...)                                             \
+  switch ((type)) {                                                            \
+  case TRANSFORM_CMP:                                                          \
+    fn##TransformComponent(__VA_ARGS__);                                       \
+    break;                                                                     \
+  case SPRITE_CMP:                                                             \
+    fn##SpriteComponent(__VA_ARGS__);                                          \
+    break;                                                                     \
+  case SCRIPT_CMP:                                                             \
+    fn##ScriptComponent(__VA_ARGS__);                                          \
+    break;                                                                     \
+  }
 
 // Set error
 void InitComponents();

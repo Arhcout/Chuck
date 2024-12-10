@@ -3,6 +3,7 @@
 #include "ECS.h"
 #include "Input.h"
 #include "Renderer.h"
+#include "Scene.h"
 #include "SubTexture.h"
 #include "Time.h"
 #include "VM.h"
@@ -46,29 +47,32 @@ int main() {
 
   ReadAtlas("/test/atlas/test");
 
-  Entity *a = CreateEntity();
-  Transform *tr = AddComponent(a, Transform);
-  tr->pos.x = 1;
-  tr->pos.y = 1;
-  tr->scale.x = 1;
-  tr->scale.y = 1.12344;
-  tr->rotation = 0;
-  tr->layer = 10;
+  /*Entity *a = CreateEntity();*/
+  /*Transform *tr = AddComponent(a, Transform);*/
+  /*tr->pos.x = 1;*/
+  /*tr->pos.y = 1;*/
+  /*tr->scale.x = 1;*/
+  /*tr->scale.y = 1.12344;*/
+  /*tr->rotation = 0;*/
+  /*tr->layer = 10;*/
+  /**/
+  /*Sprite *spr = AddComponent(a, Sprite);*/
+  /*spr->offset = (Vecf2){100, 100};*/
+  /*spr->rotation = 0;*/
+  /*spr->scale = (Vecf2){2, 2};*/
+  /*spr->enabled = true;*/
+  /*spr->tex = GetSubtexture("mtgnes", sizeof("mtgnes") - 1);*/
+  /**/
+  /*Script *script = AddComponent(a, Script);*/
+  /*LoadScript(script, a, "test/scripts/test.lua");*/
+  /*if (GetError() == ERROR_LV) {*/
+  /*  ERROR("Can't load script!\n");*/
+  /*  return 1;*/
+  /*}*/
+  /*script->enabled = true;*/
 
-  Sprite *spr = AddComponent(a, Sprite);
-  spr->offset = (Vecf2){100, 100};
-  spr->rotation = 0;
-  spr->scale = (Vecf2){2, 2};
-  spr->enabled = true;
-  spr->tex = GetSubtexture("mtgnes", sizeof("mtgnes") - 1);
-
-  Script *script = AddComponent(a, Script);
-  LoadScript(script, a, "test/scripts/test.lua");
-  if (GetError() == ERROR_LV) {
-    ERROR("Can't load script!\n");
-    return 1;
-  }
-  script->enabled = true;
+  Scene *scene = ReadScene("test/scene.json");
+  LoadScene(scene);
 
   bool running = true;
 
@@ -105,7 +109,7 @@ int main() {
     e_deltaTime = (double)(end - start) / CLOCKS_PER_SEC;
   }
 
-  DestroyEntity(a);
+  // DestroyEntity(a);
   DestroyAudio(music);
 
   UninitVM();

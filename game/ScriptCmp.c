@@ -1,6 +1,7 @@
 #include "ScriptCmp.h"
 #include "ECS.h"
 #include "Error.h"
+#include "Scene.h"
 #include "VM.h"
 #include <assert.h>
 #include <lauxlib.h>
@@ -29,7 +30,14 @@ Script *AddScriptComponent(Entity *entity) {
   Script *new = malloc(sizeof(Script));
   MALLOC_CHECK(new, NULL);
   hashmap_set(components, entity, sizeof(Entity), (uintptr_t)new);
+  new->type = SCRIPT_CMP;
   return new;
+}
+
+void RegisterScriptComponent(Entity *entity, Script *cmp) {
+  assert(entity);
+  assert(cmp);
+  hashmap_set(components, entity, sizeof(Entity), (uintptr_t)cmp);
 }
 
 static int FreeScript(const void *key, size_t keysize, uintptr_t component,
@@ -75,4 +83,23 @@ Script *GetScriptComponent(Entity *entity) {
   uintptr_t out;
   hashmap_get(components, entity, sizeof(Entity), &out);
   return (void *)out;
+}
+
+Script *DeserializeScriptComponent(cJSON *component, Entity *eid) {
+  assert(component);
+  Script *script = malloc(sizeof(Script));
+  MALLOC_CHECK(script, NULL);
+
+  char *path;
+  DESERIAL_STRING(component, "path", path);
+  DESERIAL_BOOL(component, "enabled", script->enabled);
+  script->type = SCRIPT_CMP;
+
+  LoadScript(script, eid, path);
+  if (GetError() == ERROR_LV) {
+    ERROR("Can't load script!\n");
+    return NULL;
+  }
+
+  return script;
 }

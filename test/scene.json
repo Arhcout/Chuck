@@ -1,0 +1,60 @@
+{
+  "entities": [
+    {
+      "cmps":[
+        {
+          "type": 0,
+          "pos": {
+            "x": 23.45,
+            "y": 298.45
+          },
+          "scale": {
+            "x": 1,
+            "y": 5
+          },
+          "rotation": 4.32,
+          "layer": 5,
+          "enabled": true
+        },
+        {
+          "type": 2,
+          "path": "test/scripts/test.lua",
+          "enabled": true
+        }
+      ]
+    },
+
+    {
+      "cmps":[
+        {
+          "type": 0,
+          "pos": {
+            "x": 23.45,
+            "y": 298.45
+          },
+          "scale": {
+            "x": 1,
+            "y": 5
+          },
+          "rotation": 4.32,
+          "layer": 5,
+          "enabled": true
+        },
+        {
+          "type": 1,
+          "offset": {
+            "x": 50.45,
+            "y": 50.45
+          },
+          "scale": {
+            "x": 10,
+            "y": 2
+          },
+          "rotation": 40.32,
+          "tex": "dog",
+          "enabled": true
+        }
+      ]
+    }
+  ]
+}

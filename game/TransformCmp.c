@@ -1,6 +1,7 @@
 #include "TransformCmp.h"
 #include "ECS.h"
 #include "Error.h"
+#include "Scene.h"
 #include <assert.h>
 #include <map.h>
 #include <stdint.h>
@@ -26,7 +27,14 @@ Transform *AddTransformComponent(Entity *entity) {
   Transform *new = malloc(sizeof(Transform));
   MALLOC_CHECK(new, NULL);
   hashmap_set(components, entity, sizeof(Entity), (uintptr_t)new);
+  new->type = TRANSFORM_CMP;
   return new;
+}
+
+void RegisterTransformComponent(Entity *entity, Transform *cmp) {
+  assert(entity);
+  assert(cmp);
+  hashmap_set(components, entity, sizeof(Entity), (uintptr_t)cmp);
 }
 
 static int FreeTransform(const void *key, size_t keysize, uintptr_t component,
@@ -67,17 +75,31 @@ static int UpdateTransform(const void *key, size_t keysize, uintptr_t component,
   if (!cmp->enabled) {
     return 0;
   }
-  LOG("Transform:\n\
-\tentity %lx\n\
-\tpos: %f, %f\n\
-\tscale: %f, %f\n\
-\trotation: %f\n\
-\tlayer %d\n\n",
-      *entity, cmp->pos.x, cmp->pos.y, cmp->scale.x, cmp->scale.y,
-      cmp->rotation, cmp->layer);
   return 0;
 }
 
 void UpdateTransformSystem() {
   hashmap_iterate(components, UpdateTransform, NULL);
+}
+
+Transform *DeserializeTransformComponent(cJSON *component, Entity *eid) {
+  (void)eid;
+  assert(component);
+  Transform *t = malloc(sizeof(Transform));
+  MALLOC_CHECK(t, NULL);
+
+  DESERIAL_VECF2(component, "pos", t->pos);
+  DESERIAL_VECF2(component, "scale", t->scale);
+  DESERIAL_FLOAT(component, "rotation", t->rotation);
+  DESERIAL_INT(component, "layer", t->layer);
+  DESERIAL_BOOL(component, "enabled", t->enabled);
+
+  t->type = TRANSFORM_CMP;
+
+  LOG("\ntransform:\n\tpos: %f %f\n\tscale: %f %f\n\trotation: %f\n\tlayer: "
+      "%d\n\tenabled: %d\n",
+      t->pos.x, t->pos.y, t->scale.x, t->scale.y, t->rotation, t->layer,
+      t->enabled);
+
+  return t;
 }

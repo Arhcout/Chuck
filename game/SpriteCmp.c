@@ -2,6 +2,7 @@
 #include "ECS.h"
 #include "Error.h"
 #include "Renderer.h"
+#include "Scene.h"
 #include "Time.h"
 #include <assert.h>
 #include <map.h>
@@ -29,7 +30,14 @@ Sprite *AddSpriteComponent(Entity *entity) {
   Sprite *new = malloc(sizeof(Sprite));
   MALLOC_CHECK(new, NULL);
   hashmap_set(components, entity, sizeof(Entity), (uintptr_t)new);
+  new->type = SPRITE_CMP;
   return new;
+}
+
+void RegisterSpriteComponent(Entity *entity, Sprite *cmp) {
+  assert(entity);
+  assert(cmp);
+  hashmap_set(components, entity, sizeof(Entity), (uintptr_t)cmp);
 }
 
 static int FreeSprite(const void *key, size_t keysize, uintptr_t component,
@@ -60,7 +68,7 @@ bool HasSpriteComponent(Entity *entity) {
 Sprite *GetSpriteComponent(Entity *entity) {
   uintptr_t out;
   hashmap_get(components, entity, sizeof(Entity), &out);
-  return (void *)out;
+  return (Sprite *)out;
 }
 
 static int UpdateSprite(const void *key, size_t keysize, uintptr_t component,
@@ -79,3 +87,27 @@ static int UpdateSprite(const void *key, size_t keysize, uintptr_t component,
 }
 
 void UpdateSpriteSystem() { hashmap_iterate(components, UpdateSprite, NULL); }
+
+Sprite *DeserializeSpriteComponent(cJSON *component, Entity *eid) {
+  (void)eid;
+  assert(component);
+  Sprite *spr = malloc(sizeof(Sprite));
+  MALLOC_CHECK(spr, NULL);
+
+  DESERIAL_VECF2(component, "offset", spr->offset);
+  DESERIAL_VECF2(component, "scale", spr->scale);
+  DESERIAL_FLOAT(component, "rotation", spr->rotation);
+  DESERIAL_BOOL(component, "enabled", spr->enabled);
+  char *texName;
+  DESERIAL_STRING(component, "tex", texName);
+  spr->tex = GetSubtexture(texName, strlen(texName));
+
+  spr->type = SPRITE_CMP;
+
+  LOG("\nsprite:\n\tpos: %f %f\n\tscale: %f %f\n\trotation: %f\n\ttex: "
+      "%s\n\tenabled: %d\n",
+      spr->offset.x, spr->offset.y, spr->scale.x, spr->scale.y, spr->rotation,
+      texName, spr->enabled);
+
+  return spr;
+}

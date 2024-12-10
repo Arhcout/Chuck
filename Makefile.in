@@ -15,4 +15,4 @@ TEST_DIR=$(PREFIX)test
 EXT_DIR=$(PREFIX)ext
 BASE_LDFLAGS=-g -L$(PREFIX)ext/lib
 BASE_CFLAGS=-g -Wall -I$(PREFIX)ext/include -DDEBUG
-BASE_LIBS=-Wl,-rpath,$(CURDIR)/$(PREFIX)ext/lib -Wl,--enable-new-dtags -llua -lluacm -lSDL3 -lSDL3_image -lSDL3_mixer -lm -lhashmap -lcbase 
+BASE_LIBS=-Wl,-rpath,$(CURDIR)/$(PREFIX)ext/lib -Wl,--enable-new-dtags -llua -lluacm -lcjson -lSDL3 -lSDL3_image -lSDL3_mixer -lm -lhashmap -lcbase 
