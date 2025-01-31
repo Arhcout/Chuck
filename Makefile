@@ -9,7 +9,7 @@ meta:
 	$(MAKE) -C $(META_DIR) meta
 
 ext:
-	$(MAKE) -C $(EXT_DIR)
+	$(MAKE) -C $(EXT_DIR) EDITOR=1
 
 tests: game
 	$(MAKE) -C $(TEST_DIR)

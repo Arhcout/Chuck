@@ -2,6 +2,7 @@
 *.a
 *.idx
 *.c.test
+imgui.ini
 vgcore.*
 Session.vim
 Chuck

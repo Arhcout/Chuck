@@ -1,8 +1,9 @@
 include ../Makefile.in
 PREFIX=../
 
-SRC=$(shell find . -name "*.c" -not -name "main.c" -not -name "LuaCM*")
+SRC=$(shell find . -name "*.c" -not -name "main.c")
 OBJ=$(SRC:%=%.o)
+EXT_OBJ=
 ENTRY=main.c.o
 
 LIBS=$(BASE_LIBS)
@@ -12,8 +13,7 @@ CFLAGS=$(BASE_CFLAGS)
 .DEFAULT: $(GAME)
 
 $(GAME): $(ENTRY) $(GAME_LIB)
-	$(MAKE) -C $(LCM_DIR)
-	$(CC) $(LDFLAGS) $^ -o $@ $(LIBS)
+	$(CC) $(LDFLAGS)  $^ $(EXT_OBJ) -o $@ $(LIBS) 
 
 $(GAME_LIB): $(OBJ)
 	$(AR) r $@ $^
@@ -23,5 +23,4 @@ $(GAME_LIB): $(OBJ)
 	$(CC) -c $(CFLAGS) $^ -o $@
 
 clean:
-	$(MAKE) -C $(LCM_DIR) clean
 	rm -f $(OBJ) $(ENTRY)

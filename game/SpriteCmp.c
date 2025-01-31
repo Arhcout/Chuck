@@ -78,10 +78,10 @@ static int UpdateSprite(const void *key, size_t keysize, uintptr_t component,
   if (!cmp->enabled) {
     return 0;
   }
-  static double theta = 0;
-  theta += e_deltaTime;
-  cmp->rotation += 50.0f * e_deltaTime;
-  cmp->scale.x = sin(theta) * 2;
+  // static double theta = 0;
+  // theta += e_deltaTime;
+  // cmp->rotation += 50.0f * e_deltaTime;
+  // cmp->scale.x = sin(theta) * 2;
   RegisterEntityToRender(entity);
   return 0;
 }

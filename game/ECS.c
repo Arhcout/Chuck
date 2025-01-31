@@ -4,10 +4,20 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+#ifdef DEBUG
+
+#include <Array.h>
+Entity *entitieIDArray;
+
+#endif
 Entity *CreateEntity() {
   Entity *e = malloc(sizeof(Entity));
   MALLOC_CHECK(e, NULL);
   *e = GenerateUUID();
+
+#ifdef DEBUG
+  ArrayPush(entitieIDArray, e);
+#endif
   return e;
 }
 
@@ -44,6 +54,9 @@ bool HasComponent(Entity *entity, int type) {
 }
 
 void InitComponents() {
+#ifdef DEBUG
+  entitieIDArray = InitArray(Entity, 8);
+#endif
   InitTransformComponents();
   InitSpriteComponents();
   InitScriptComponents();
@@ -60,3 +73,7 @@ void UpdateSystems() {
   UpdateSpriteSystem();
   UpdateScriptSystem();
 }
+
+#ifdef DEBUG
+Entity *GetAllEntitieIDs() { return entitieIDArray; }
+#endif

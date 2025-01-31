@@ -53,3 +53,7 @@ bool HasComponent(Entity *entity, int type);
 void UpdateSystems();
 
 void UninitComponents();
+
+#ifdef DEBUG
+Entity *GetAllEntitieIDs();
+#endif

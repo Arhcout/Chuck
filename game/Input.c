@@ -1,31 +1,34 @@
 #include "Input.h"
+#include <Error.h>
 #include <assert.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-static bool _keys[322];
+static const bool *_keys;
+static bool *_prevKeys;
+static int _numKeys;
 
-void InputPoll(SDL_Event *event) {
-  assert(event != NULL);
-
-  switch (event->type) {
-  case SDL_EVENT_KEY_DOWN:
-    _keys[event->key.key % 322] = true;
-    break;
-
-  case SDL_EVENT_KEY_UP:
-    _keys[event->key.key % 322] = false;
-    break;
-  }
+void InitInput() {
+  _keys = SDL_GetKeyboardState(&_numKeys);
+  _prevKeys = malloc(_numKeys * sizeof(bool));
 }
 
-bool IsKeyDown(SDL_Keycode key) {
-  assert(key >= 0);
-  assert(key < 322);
-  return _keys[key];
+void UninitInput() {
+  assert(_prevKeys);
+  free(_prevKeys);
 }
+
+void InputPoll() {
+  memcpy(_prevKeys, _keys, _numKeys * sizeof(bool));
+  SDL_PumpEvents();
+}
+
+bool IsKeyDown(SDL_Scancode key) { return _keys[key]; }
+
+bool IsKeyPressed(SDL_Scancode key) { return !_prevKeys[key] && _keys[key]; }
 
 void GetMousePosition(Vecf2 *out_mousePos) {
   assert(out_mousePos != NULL);

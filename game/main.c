@@ -12,14 +12,17 @@
 #include <SDL3_image/SDL_image.h>
 #include <time.h>
 
+#ifdef DEBUG
+#define CIMGUI_DEFINE_ENUMS_AND_STRUCTS
+#define CIMGUI_USE_SDL3
+#define CIMGUI_USE_SDL_RENDERER3
+#include <cimgui.h>
+#include <cimgui_impl.h>
+#endif
+
 int main() {
   if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
     ERROR("Can't init SDL3: %s\n", SDL_GetError());
-    return 1;
-  }
-
-  if (!IMG_Init(IMG_INIT_PNG)) {
-    ERROR("Can't init SDL3_image: %s\n", SDL_GetError());
     return 1;
   }
 
@@ -31,7 +34,7 @@ int main() {
   InitAtlas();
   InitSubTextures();
 
-  InitRenderer();
+  InitRenderer(800 * 1.5, 600 * 1.5);
   if (GetError() == ERROR_LV) {
     return 1;
   }
@@ -41,11 +44,23 @@ int main() {
     return 1;
   }
 
+  InitInput();
+
   InitVM();
 
-  Audio *music = LoadAudio("testlevel/snd/Dogcheck.wav");
+  // Audio *music = LoadAudio("testlevel/snd/Dogcheck.wav");
 
   ReadAtlas("/test/atlas/test");
+
+#ifdef DEBUG
+  ImGuiContext *ctx = igCreateContext(NULL);
+  ImGuiIO *io = igGetIO();
+
+  ImGui_ImplSDL3_InitForSDLRenderer(GetWindow(), GetRenderer());
+  ImGui_ImplSDLRenderer3_Init(GetRenderer());
+
+  igStyleColorsDark(NULL);
+#endif
 
   /*Entity *a = CreateEntity();*/
   /*Transform *tr = AddComponent(a, Transform);*/
@@ -79,7 +94,7 @@ int main() {
   time_t seconds = time(NULL);
   uint32_t frameCount = 0;
   clock_t start, end;
-  PlayAudio(music, 100, true);
+  // PlayAudio(music, 100, true);
 
   while (running) {
     start = clock();
@@ -89,17 +104,16 @@ int main() {
       seconds = time(NULL);
     }
     SDL_Event e;
+    InputPoll();
     while (SDL_PollEvent(&e)) {
       switch (e.type) {
       case SDL_EVENT_QUIT:
         running = false;
         break;
-
-      case SDL_EVENT_KEY_UP:
-      case SDL_EVENT_KEY_DOWN:
-        InputPoll(&e);
-        break;
       }
+#ifdef DEBUG
+      ImGui_ImplSDL3_ProcessEvent(&e);
+#endif
     }
 
     UpdateSystems();
@@ -109,16 +123,21 @@ int main() {
     e_deltaTime = (double)(end - start) / CLOCKS_PER_SEC;
   }
 
+#ifdef DEBUG
+  ImGui_ImplSDL3_Shutdown();
+  ImGui_ImplSDLRenderer3_Shutdown();
+#endif
+
   // DestroyEntity(a);
-  DestroyAudio(music);
+  // DestroyAudio(music);
 
   UninitVM();
   UninitAtlas();
   UninitSubTextures();
   UninitRenderer();
   UninitAudio();
+  UninitInput();
 
-  IMG_Quit();
   SDL_Quit();
 
   return 0;

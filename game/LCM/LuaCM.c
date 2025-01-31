@@ -32,10 +32,10 @@ static int Entity_new(lua_State *L) {
 // args: num-type
 static int Entity_HasComponent(lua_State *L) {
   Entity *e = CheckEntity(L, 1);
-  int type = luaL_checkinteger(L, 2);
+  lua_Integer type = luaL_checkinteger(L, 2);
 
   lua_pushboolean(L, HasComponent(e, type));
-  return 1; // TODO
+  return 1;
 }
 
 static int Entity_tostring(lua_State *L) {
@@ -49,10 +49,87 @@ static int Entity_gc(lua_State *L) {
   return 0;
 }
 
+//////////////////////////////////////////////////////
+/// TRANSFORM METHODS
+//////////////////////////////////////////////////////
+
+// args: num x, num y
+static int Transform_SetPosition(lua_State *L) {
+  Entity *e = CheckEntity(L, 1);
+  lua_Number x = luaL_checknumber(L, 2);
+  lua_Number y = luaL_checknumber(L, 3);
+  Transform *t = GetComponent(e, Transform);
+  if (!t) {
+    ERROR("Entity '%lu' doesn't have a transform component1\n", *e);
+    return 0;
+  }
+  t->pos.x = x;
+  t->pos.y = y;
+  return 0;
+}
+
+// args: num scale_x, num scale_y
+static int Transform_SetScale(lua_State *L) {
+  Entity *e = CheckEntity(L, 1);
+  lua_Number x = luaL_checknumber(L, 2);
+  lua_Number y = luaL_checknumber(L, 3);
+  Transform *t = GetComponent(e, Transform);
+  if (!t) {
+    ERROR("Entity '%lu' doesn't have a transform component1\n", *e);
+    return 0;
+  }
+  t->scale.x = x;
+  t->scale.y = y;
+  return 0;
+}
+
+// args: num rotation
+static int Transform_SetRotation(lua_State *L) {
+  Entity *e = CheckEntity(L, 1);
+  lua_Number rotation = luaL_checknumber(L, 2);
+  Transform *t = GetComponent(e, Transform);
+  if (!t) {
+    ERROR("Entity '%lu' doesn't have a transform component1\n", *e);
+    return 0;
+  }
+  t->rotation = rotation;
+  return 0;
+}
+
+// args: int layer
+static int Transform_SetLayer(lua_State *L) {
+  Entity *e = CheckEntity(L, 1);
+  lua_Integer layer = luaL_checknumber(L, 2);
+  Transform *t = GetComponent(e, Transform);
+  if (!t) {
+    ERROR("Entity '%lu' doesn't have a transform component1\n", *e);
+    return 0;
+  }
+  t->layer = layer;
+  return 0;
+}
+
+// args: bool enable
+static int Transform_SetEnable(lua_State *L) {
+  Entity *e = CheckEntity(L, 1);
+  bool enable = lua_toboolean(L, 2);
+  Transform *t = GetComponent(e, Transform);
+  if (!t) {
+    ERROR("Entity '%lu' doesn't have a transform component1\n", *e);
+    return 0;
+  }
+  t->enabled = enable;
+  return 0;
+}
+
 static const struct luaL_Reg _LCM_EntityReg[] = {
     {"__tostring", Entity_tostring},
     {"__gc", Entity_gc},
     {"has_component", Entity_HasComponent},
+    {"transform_set_position", Transform_SetPosition},
+    {"transform_set_layer", Transform_SetLayer},
+    {"transform_set_rotation", Transform_SetRotation},
+    {"transform_set_scale", Transform_SetScale},
     {NULL, NULL},
 };
 

@@ -17,6 +17,20 @@
           "enabled": true
         },
         {
+          "type": 1,
+          "offset": {
+            "x": 50.45,
+            "y": 50.45
+          },
+          "scale": {
+            "x": 10,
+            "y": 2
+          },
+          "rotation": 40.32,
+          "tex": "dog",
+          "enabled": true
+        },
+        {
           "type": 2,
           "path": "test/scripts/test.lua",
           "enabled": true

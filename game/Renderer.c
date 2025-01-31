@@ -10,8 +10,20 @@ static SDL_Window *win;
 
 static Queue *renderQueue;
 
-void InitRenderer() {
-  win = SDL_CreateWindow("Chuck", 800, 600, 0);
+#ifdef DEBUG
+#include "Input.h"
+
+#define CIMGUI_DEFINE_ENUMS_AND_STRUCTS
+#define CIMGUI_USE_SDL3
+#define CIMGUI_USE_SDL_RENDERER3
+#include "Editor.h"
+#include <cimgui.h>
+#include <cimgui_impl.h>
+
+#endif
+
+void InitRenderer(int w, int h) {
+  win = SDL_CreateWindow("Chuck", w, h, SDL_WINDOW_RESIZABLE);
   if (!win) {
     ERROR("Can't create window: %s\n", SDL_GetError());
     SetError(ERROR_LV);
@@ -31,6 +43,10 @@ void InitRenderer() {
     return;
   }
 }
+
+SDL_Window *GetWindow() { return win; }
+
+SDL_Renderer *GetRenderer() { return ren; }
 
 void UninitRenderer() {
   SDL_DestroyRenderer(ren);
@@ -60,6 +76,20 @@ void Render() {
                              tr->rotation + spr->rotation, NULL, SDL_FLIP_NONE);
     free(entity);
   }
+#ifdef DEBUG
+  ImGui_ImplSDL3_NewFrame();
+  ImGui_ImplSDLRenderer3_NewFrame();
+  igNewFrame();
+  static bool showEditor = true;
+  if (IsKeyPressed(SDL_SCANCODE_F3))
+    showEditor = !showEditor;
+
+  if (showEditor)
+    RenderEditor();
+
+  igRender();
+  ImGui_ImplSDLRenderer3_RenderDrawData(igGetDrawData(), ren);
+#endif
 
   SDL_RenderPresent(ren);
 }

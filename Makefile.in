@@ -1,8 +1,10 @@
-CC=gcc
+CC=clang
 AR=ar
 
 # Set PREFIX for local path dependant vars (the / is inportant)
 PREFIX=./
+
+TARGET?=DEBUG
 
 GAME=$(PREFIX)Chuck
 GAME_LIB=$(PREFIX)libchuck.a
@@ -13,6 +15,11 @@ GAME_DIR=$(PREFIX)game
 META_DIR=$(PREFIX)meta
 TEST_DIR=$(PREFIX)test
 EXT_DIR=$(PREFIX)ext
-BASE_LDFLAGS=-g -L$(PREFIX)ext/lib
-BASE_CFLAGS=-g -Wall -I$(PREFIX)ext/include -DDEBUG
-BASE_LIBS=-Wl,-rpath,$(CURDIR)/$(PREFIX)ext/lib -Wl,--enable-new-dtags -llua -lluacm -lcjson -lSDL3 -lSDL3_image -lSDL3_mixer -lm -lhashmap -lcbase 
+BASE_LDFLAGS=-Wl,-rpath,$(CURDIR)/$(PREFIX)ext/lib -Wl,--enable-new-dtags -L$(PREFIX)ext/lib
+BASE_CFLAGS=-Wall -I$(PREFIX)ext/include -I$(PREFIX)game
+BASE_LIBS=-llua -lcjson -lSDL3 -lSDL3_image -lSDL3_mixer -lm -lhashmap -lcbase
+ifeq ($(TARGET), DEBUG)
+BASE_CFLAGS += -g -DDEBUG
+BASE_LDFLAGS += -g
+BASE_LIBS += $(PREFIX)ext/lib/cimgui.so $(shell realpath $(PREFIX)ext/lib/sdl3Impl.a) 
+endif

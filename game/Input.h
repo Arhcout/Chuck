@@ -9,8 +9,12 @@ enum MouseButtons {
   MOUSE_RIGHT = 3,
 };
 
-void InputPoll(SDL_Event *event);
+void InitInput();
+void UninitInput();
 
-bool IsKeyDown(SDL_Keycode key);
+void InputPoll();
+
+bool IsKeyDown(SDL_Scancode key);
+bool IsKeyPressed(SDL_Scancode key);
 void GetMousePosition(Vecf2 *mousePos);
 bool GetButtonState(enum MouseButtons button);
