@@ -15,6 +15,8 @@ typedef uint64_t Entity;
 #define SPRITE_CMP 1
 #define SCRIPT_CMP 2
 
+#define NUM_CMP_TYPE 3
+
 // if no return value use 'void' for res
 #define CmpFnOnTypeWithRes(fn, type, res, ...)                                 \
   switch ((type)) {                                                            \

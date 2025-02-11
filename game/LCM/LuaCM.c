@@ -1,4 +1,5 @@
 #include "LuaCM.h"
+#include "Input.h"
 #include <ECS.h>
 #include <Error.h>
 #include <Time.h>
@@ -144,8 +145,22 @@ static int lf_GetDeltaTime(lua_State *L) {
   return 1;
 }
 
+// no args
+// return mouse pos in table: {x,y} to lua
+static int lf_GetMousePos(lua_State *L) {
+  Vecf2 pos;
+  GetMousePosition(&pos);
+  lua_createtable(L, 0, 2);
+  lua_pushnumber(L, pos.x);
+  lua_setfield(L, -2, "x");
+  lua_pushnumber(L, pos.y);
+  lua_setfield(L, -2, "y");
+  return 1;
+}
+
 static const struct luaL_Reg _LCM_functions[] = {
     {"get_dt", lf_GetDeltaTime},
+    {"get_mouse_pos", lf_GetMousePos},
     {"new_entity", Entity_new},
     {NULL, NULL},
 };

@@ -1,6 +1,7 @@
 #include "Atlas.h"
 #include "Audio.h"
 #include "ECS.h"
+#include "Editor.h"
 #include "Input.h"
 #include "Renderer.h"
 #include "Scene.h"
@@ -60,6 +61,8 @@ int main() {
   ImGui_ImplSDLRenderer3_Init(GetRenderer());
 
   igStyleColorsDark(NULL);
+
+  InitEditor();
 #endif
 
   /*Entity *a = CreateEntity();*/
