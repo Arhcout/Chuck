@@ -1,14 +1,16 @@
 #include "Editor.h"
 #include "ECS.h"
 #include "Renderer.h"
-#include "Utils.h"
 #include <Array.h>
 #include <Error.h>
 #include <assert.h>
 #include <map.h>
 #include <stdlib.h>
+
+// clang-format off
 #define CIMGUI_DEFINE_ENUMS_AND_STRUCTS
 #include <cimgui.h>
+// clang-format on
 
 #define DEFAULT_STEP_SIZEF 0.1
 #define DEFAULT_FAST_STEP_SIZEF 1
@@ -17,6 +19,13 @@
 
 static uint64_t widgetID = 0;
 static hashmap *selection;
+
+static hashmap *entityNames;
+
+void SetEntityNames(hashmap *names) {
+  assert(names);
+  entityNames = names;
+}
 
 static void RenderWidgetTransformComponent(Entity *e) {
   Transform *cmp = GetComponent(e, Transform);
@@ -68,7 +77,6 @@ static int GetFirstSelectedEntity(const void *key, size_t ksize, uintptr_t value
   if ((bool)value == false) {
     return 0; // continue
   }
-  LOG("key: %lu\n", *(size_t *)key);
   *(size_t *)usr = *(size_t *)key;
   return -1; // Abort
 }
@@ -110,8 +118,9 @@ void RenderEditor() {
     bool selected;
     size_t j = i;
     hashmap_get(selection, &j, sizeof(size_t), (uintptr_t *)&selected);
-    igSelectable_Bool("Entity nya~~~ :3", selected, ImGuiSelectableFlags_SpanAvailWidth,
-                      (ImVec2){100, 15});
+    const char *name;
+    hashmap_get(entityNames, &entities[i], sizeof(Entity), (uintptr_t *)&name);
+    igSelectable_Bool(name, selected, ImGuiSelectableFlags_SpanAvailWidth, (ImVec2){100, 15});
     igPopID();
   }
 
@@ -149,9 +158,8 @@ void RenderEditor() {
   igBegin("EntityViewer", NULL,
           ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
 
-  size_t selectedIdx;
+  size_t selectedIdx = 0;
   hashmap_iterate(selection, GetFirstSelectedEntity, &selectedIdx);
-  LOG("%lu\n", selectedIdx);
   for (int i = 0; i < NUM_CMP_TYPE; i++) {
     CmpFnOnType(RenderWidget, i, &entities[selectedIdx]);
   }

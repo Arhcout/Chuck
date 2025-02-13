@@ -18,36 +18,36 @@ typedef uint64_t Entity;
 #define NUM_CMP_TYPE 3
 
 // if no return value use 'void' for res
-#define CmpFnOnTypeWithRes(fn, type, res, ...)                                 \
-  switch ((type)) {                                                            \
-  case TRANSFORM_CMP:                                                          \
-    (res) = fn##TransformComponent(__VA_ARGS__);                               \
-    break;                                                                     \
-  case SPRITE_CMP:                                                             \
-    (res) = fn##SpriteComponent(__VA_ARGS__);                                  \
-    break;                                                                     \
-  case SCRIPT_CMP:                                                             \
-    (res) = fn##ScriptComponent(__VA_ARGS__);                                  \
-    break;                                                                     \
+#define CmpFnOnTypeWithRes(fn, type, res, ...)                                                     \
+  switch ((type)) {                                                                                \
+  case TRANSFORM_CMP:                                                                              \
+    (res) = fn##TransformComponent(__VA_ARGS__);                                                   \
+    break;                                                                                         \
+  case SPRITE_CMP:                                                                                 \
+    (res) = fn##SpriteComponent(__VA_ARGS__);                                                      \
+    break;                                                                                         \
+  case SCRIPT_CMP:                                                                                 \
+    (res) = fn##ScriptComponent(__VA_ARGS__);                                                      \
+    break;                                                                                         \
   }
 
-#define CmpFnOnType(fn, type, ...)                                             \
-  switch ((type)) {                                                            \
-  case TRANSFORM_CMP:                                                          \
-    fn##TransformComponent(__VA_ARGS__);                                       \
-    break;                                                                     \
-  case SPRITE_CMP:                                                             \
-    fn##SpriteComponent(__VA_ARGS__);                                          \
-    break;                                                                     \
-  case SCRIPT_CMP:                                                             \
-    fn##ScriptComponent(__VA_ARGS__);                                          \
-    break;                                                                     \
+#define CmpFnOnType(fn, type, ...)                                                                 \
+  switch ((type)) {                                                                                \
+  case TRANSFORM_CMP:                                                                              \
+    fn##TransformComponent(__VA_ARGS__);                                                           \
+    break;                                                                                         \
+  case SPRITE_CMP:                                                                                 \
+    fn##SpriteComponent(__VA_ARGS__);                                                              \
+    break;                                                                                         \
+  case SCRIPT_CMP:                                                                                 \
+    fn##ScriptComponent(__VA_ARGS__);                                                              \
+    break;                                                                                         \
   }
 
 // Set error
 void InitComponents();
 
-Entity *CreateEntity();
+Entity *CreateEntity(const char *name, size_t nameLen);
 void DestroyEntity(Entity *entity);
 void RemoveAllComponents(Entity *entity);
 bool HasComponent(Entity *entity, int type);

@@ -1,6 +1,7 @@
 #include "ECS.h"
 #include "Error.h"
 #include "UUID.h"
+#include <openssl/sha.h>
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -10,10 +11,12 @@
 Entity *entitieIDArray;
 
 #endif
-Entity *CreateEntity() {
+Entity *CreateEntity(const char *name, size_t nameLen) {
   Entity *e = malloc(sizeof(Entity));
   MALLOC_CHECK(e, NULL);
-  *e = GenerateUUID();
+  unsigned char tmp[20];
+  SHA1((const unsigned char *)name, nameLen, tmp);
+  *e = *(Entity *)tmp;
 
 #ifdef DEBUG
   ArrayPush(entitieIDArray, e);
@@ -27,9 +30,9 @@ void DestroyEntity(Entity *entity) {
   free(entity);
 }
 
-#define GarantiRemoveCmp(type, entity)                                         \
-  if (Has##type##Component((entity))) {                                        \
-    Remove##type##Component(entity);                                           \
+#define GarantiRemoveCmp(type, entity)                                                             \
+  if (Has##type##Component((entity))) {                                                            \
+    Remove##type##Component(entity);                                                               \
   }
 void RemoveAllComponents(Entity *entity) {
   assert(entity);

@@ -1,15 +1,26 @@
 #include "Scene.h"
-#include "Atlas.h"
 #include "ECS.h"
+#include "Editor.h"
 #include "Files.h"
 #include <Array.h>
 #include <Error.h>
 #include <cjson/cJSON.h>
 #include <stdlib.h>
 
+#ifdef DEBUG
+int FreeNames(const void *key, size_t keySize, uintptr_t value, void *usr) {
+  if (value)
+    free((void *)value);
+  return 0;
+}
+#endif
+
 void DestroyScene(Scene *scene) {
   DestroyArray(scene->cmps);
   DestroyArray(scene->owner);
+#ifdef DEBUG
+  hashmap_iterate(scene->names, FreeNames, NULL);
+#endif
   free(scene);
 }
 
@@ -38,6 +49,7 @@ Scene *ReadScene(const char *path) {
   MALLOC_CHECK(scene->cmps, NULL);
   scene->owner = InitArray(Entity *, 4);
   MALLOC_CHECK(scene->cmps, NULL);
+  scene->names = hashmap_create();
 
   cJSON *entities = cJSON_GetObjectItemCaseSensitive(json, "entities");
   if (!cJSON_IsArray(entities)) {
@@ -52,7 +64,21 @@ Scene *ReadScene(const char *path) {
       goto error;
     }
 
-    Entity *eid = CreateEntity();
+    cJSON *name = cJSON_GetObjectItemCaseSensitive(entity, "name");
+    if (!cJSON_IsString(name)) {
+      ERROR("\"name\" sould be a string\n");
+      goto error;
+    }
+
+    size_t namelen = strlen(name->valuestring);
+    Entity *eid = CreateEntity(name->valuestring, namelen);
+
+#ifdef DEBUG
+    char *nameCpy = malloc(namelen * sizeof(char));
+    strncpy(nameCpy, name->valuestring, namelen);
+
+    hashmap_set(scene->names, eid, sizeof(Entity), (uintptr_t)nameCpy);
+#endif
 
     cJSON *cmps = cJSON_GetObjectItemCaseSensitive(entity, "cmps");
 
@@ -98,6 +124,9 @@ void LoadScene(Scene *scene) {
   assert(scene);
   assert(scene->owner);
   assert(scene->cmps);
+  assert(scene->names);
+  SetEntityNames(scene->names);
+
   for (int i = 0; i < GetArrayLen(scene->cmps); i++) {
     void *cmp = scene->cmps[i];
     LOG("type: %u\n", *(unsigned *)cmp);

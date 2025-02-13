@@ -17,7 +17,7 @@ TEST_DIR=$(PREFIX)test
 EXT_DIR=$(PREFIX)ext
 BASE_LDFLAGS=-Wl,-rpath,$(CURDIR)/$(PREFIX)ext/lib -Wl,--enable-new-dtags -L$(PREFIX)ext/lib
 BASE_CFLAGS=-Wall -I$(PREFIX)ext/include -I$(PREFIX)game
-BASE_LIBS=-llua -lcjson -lSDL3 -lSDL3_image -lSDL3_mixer -lm -lhashmap -lcbase
+BASE_LIBS=-lssl -lcrypto -llua -lcjson -lSDL3 -lSDL3_image -lSDL3_mixer -lm -lhashmap -lcbase
 ifeq ($(TARGET), DEBUG)
 BASE_CFLAGS += -g -DDEBUG
 BASE_LDFLAGS += -g
